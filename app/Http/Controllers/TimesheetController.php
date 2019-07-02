@@ -1,77 +1,100 @@
 <?php 
 
 namespace App\Http\Controllers;
-use App\User;
+
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Validation\ValidationName;
+use App\Models\Timesheet;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+
 
 class TimesheetController extends Controller
-{
-    
+{ 
    
-   public function AddTimesheet(){
+    public function index()
+    {
+        $email = Auth::user()->email;
+        $timesheet = Timesheet::wherename($email)->get();
 
-    return view('timesheet.create',['name' => 'Hello index welcome']);
+        return view('timesheet.view', ['timesheet' => $timesheet]);
+    }
 
-   }
+    public function create()
+    {
+        return view('timesheet.create', ['name' => 'Hello index welcome']);
+    }
 
-   public function view(){
+    public function show($id)
+    {
+        $timesheet = Timesheet::find($id);
 
-        return view('timesheet.view',[
-            'timesheet' => User::all()
-        ]);
-   }
+        return view('timesheet.show', ['timesheet' => $timesheet]);
+    }
 
-   public function post_AddTimesheet(Request $request){  
-   $request->validate([
+    public function store(Request $request)
+    {  
+        $request->validate([
+           'details' => 'required',]
+        );
 
-                'name' => 'required',
+        $email = Auth::user()->email;
+        $dt = Carbon::now('Asia/Ho_Chi_Minh')->hour;
+        $submit_date = Carbon::now('Asia/Ho_Chi_Minh');
+        echo $submit_date->toDateString();
 
-                '_work' => 'required',
+        if($dt<17){
+            $late =0;
+        }
+        else{
+            $late=1;
+        }
 
-                '_date' => 'required|date'
-
-            ], [
-
-                'name.required' => 'Name is required',
-
-                '_work.required' => '_work is required',
-                '_date.required' => 'date is error'
-
-            ]);
-       $product_id = \DB::table('timesheet')->insert([
-            'name'       => $request->input('name'),
-            '_date'      => $request->input('_date'),
-            '_work'    => $request->input('_work'),
-            'difficulty' => $request->input('difficulty'),
+        $product_id = Timesheet::create([
+            'name' => $email,
+            'submit_date' => $submit_date/*$request->input('submit_date')*/,
+            'start_time' => $request->input('start_time'),
+            'end_time' => $request->input('end_time'),
+            'details' => $request->input('details'),
+            'issue' => $request->input('issue'),
             'intention' => $request->input('intention'),
-            'late' => $request->input('late')
-            
-            ]);
-        return redirect()->route('view')->with('message', ' ' . $product_id);
+            'late_flg' => $late          
+        ]); 
+
+        return redirect()->route('timesheets.index')->with('message', ' '. $product_id);
+    }
+
+    public function edit($id)
+    {
+        $timesheet = Timesheet::find($id);
+
+        return view('timesheet.update', ['timesheet'=>$timesheet]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $timesheet = Timesheet::find($id);
+
+        $request->validate(
+        [
+           'details' => 'required'
+        ]
+        );
+
+        $timesheet->details = $request->details;
+        $timesheet->issue = $request->issue;
+        $timesheet->intention = $request->intention;
+        $timesheet->save();
+
+        return redirect()->route('timesheets.index');
    }
 
+    public function destroy($id){
+        Timesheet::destroy($id);
 
-
-   public function edit($id){
-    $timesheet=User::find($id);
-    return view('timesheet.update',['timesheet'=>$timesheet]);
-
+        return redirect()->route('timesheets.index');
    }
-
-   public function postedit(Request $request,$id){
-
-    $timesheet = User::find($id);
-    $timesheet ->name= $request->name;
-    $timesheet ->_work= $request->_work;
-    $timesheet ->difficulty= $request->difficulty;
-    $timesheet ->intention= $request->intention;
-    $timesheet ->save();
-    return redirect()->route('view');
-
-   }
-
-
 
 }

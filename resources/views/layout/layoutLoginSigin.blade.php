@@ -11,16 +11,12 @@
 		
 	
 			<div class="Cla" id="content">
-			
-				<ul class="ul1">
-					<li><a href="{{route('timesheets.index')}}"> View</a>   </li>
-					<li><a href="{{route('timesheets.create')}}"> Create</a>   </li>
-					
 				
-				</ul>
+				
 				<ul class="ul2">
-					<li><a href="{{route('users.logout')}}"> Đăng xuất</a>   </li>
-					
+					<li><a href="{{route('users.signin')}}"> Signin </a></li>
+					<li><a href="{{route('users.create')}}"> Signup </a></li>			
+
 				</ul>
 			</div>
 		
@@ -29,7 +25,7 @@
 	<div class="top">
 		
 
-		@yield ('content')
+		@yield ('In')
 		
 
 	</div>

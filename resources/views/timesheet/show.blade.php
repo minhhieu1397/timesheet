@@ -25,27 +25,24 @@
 						<th ></th>
 					</tr>
 				</thead>
+
 				<tbody>
-					
-					@foreach($timesheet as $t)
 					<tr>
-						<td class="td1">{{$t->id}}</td>
-						<td class="td2">{{$t->name}}</td>
-						<td class="td3">{{$t->submit_date}}</td>
-						<td class="td3">{{$t->start_time}}</td>
-						<td class="td3">{{$t->end_time}}</td>
-						<td class="td4">{{$t->details}}</td>
-						<td class="td5">{{$t->issue}}</td>
-						<td class="td6">{{$t->intention}}</td>
-						<td class="td7">{{$t->late_flg}}</td>
+						<td class="td1">{{$timesheet->id}}</td>
+						<td class="td2">{{$timesheet->name}}</td>
+						<td class="td3">{{$timesheet->submit_date}}</td>
+						<td class="td3">{{$timesheet->start_time}}</td>
+						<td class="td3">{{$timesheet->end_time}}</td>
+						<td class="td4">{{$timesheet->details}}</td>
+						<td class="td5">{{$timesheet->issue}}</td>
+						<td class="td6">{{$timesheet->intention}}</td>
+						<td class="td7">{{$timesheet->late_flg}}</td>
 						<td> 
-							<a href="{{route('timesheets.show',$t['id'])}}" >View</a>
-							
-							<a href="{{route('timesheets.destroy',$t['id'])}}" >Delete</a>
+							<a href="{{route('timesheets.edit',$timesheet['id'])}}" >Edit</a>
 						</td>
-					</tr>
-					@endforeach
+					</tr>						
 				</tbody>
+				
 			</table>
 		</div>
 	</div>

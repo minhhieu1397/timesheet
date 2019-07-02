@@ -1,4 +1,4 @@
-@extends ('layout.main')
+@extends ('layout.admin')
 
 @section('content')
 	
@@ -9,6 +9,7 @@
 			<h3 class="viewtitle"> View</h3>
 		</div>
 		<div class="viewbody">
+			
 			
 			<table class="tableView">
 				<thead>
@@ -26,9 +27,10 @@
 					</tr>
 				</thead>
 				<tbody>
-					
+
 					@foreach($timesheet as $t)
 					<tr>
+
 						<td class="td1">{{$t->id}}</td>
 						<td class="td2">{{$t->name}}</td>
 						<td class="td3">{{$t->submit_date}}</td>
@@ -38,15 +40,15 @@
 						<td class="td5">{{$t->issue}}</td>
 						<td class="td6">{{$t->intention}}</td>
 						<td class="td7">{{$t->late_flg}}</td>
-						<td> 
-							<a href="{{route('timesheets.show',$t['id'])}}" >View</a>
-							
-							<a href="{{route('timesheets.destroy',$t['id'])}}" >Delete</a>
-						</td>
+						
 					</tr>
 					@endforeach
+					<div>
+
+					</div>
 				</tbody>
 			</table>
+			number of days late: <?php echo $late; ?>
 		</div>
 	</div>
 

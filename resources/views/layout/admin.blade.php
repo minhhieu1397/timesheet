@@ -13,9 +13,8 @@
 			<div class="Cla" id="content">
 			
 				<ul class="ul1">
-					<li><a href="{{route('timesheets.index')}}"> View</a>   </li>
-					<li><a href="{{route('timesheets.create')}}"> Create</a>   </li>
-					
+					<li><a href="{{route('users.index')}}"> View Users</a>   </li>
+										
 				
 				</ul>
 				<ul class="ul2">

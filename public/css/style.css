@@ -45,9 +45,6 @@
 .container{
 	background-color: #CCFFFF;
 	margin: bottom;
-	
-	
-	
 }
 .Add{
 	font-size: 50px;
@@ -59,7 +56,7 @@
 }
 
 form .form-control{
-	text-align: left;
+	text-align: center;
 	
   	padding: 7px 100px;
   	margin-bottom: 7px;
@@ -73,9 +70,7 @@ form .form-work{
 form .form-control:hover {
   background: #f1f7fa;
 }
-form .form-group{
-	text-align:center;
-}
+
 form label {
   display: inline-block; 
   font-size: 1.2em;
@@ -84,6 +79,13 @@ form label {
   padding: 6px 0;
   color: #464646;
   vertical-align: top;
+}
+
+.col-offset {
+	text-align: center;
+}
+.row{
+	text-align: center;
 }
 
 form .req { color: #ca5354; }
@@ -129,12 +131,22 @@ form .req { color: #ca5354; }
 
 }
 .td41{
-	width: 40%;
+	width: 15%;
 	text-align: center;
 
 }
 .td4{
-	width: 40%;
+	width: 15%;
+	text-align: left;
+
+}
+.td5{
+	width: 15%;
+	text-align: left;
+
+}
+.td6{
+	width: 15%;
 	text-align: left;
 
 }
