@@ -20,12 +20,12 @@
 				</thead>
 				<tbody>
 					
-					@foreach($users as $users)
-					<tr>
-						<td class="nb1">{{$users->id}}</td>
-						<td class="nb2">{{$users->email}}</td>
-						<td><a href="{{route('users.show',$users['email'])}}" class="nb3">VIEW</a></td>
-					</tr>
+					@foreach($user as $user)
+						<tr>
+							<td class="nb1">{{$user->id}}</td>
+							<td class="nb2">{{$user->email}}</td>
+							<td><a href="{{route('users.show',$user['id'])}}" class="nb3">VIEW</a></td>
+						</tr>
 					@endforeach
 				</tbody>
 			</table>

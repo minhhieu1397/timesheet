@@ -8,8 +8,7 @@
 		<div class="view1">
 			<h3 class="viewtitle"> View</h3>
 		</div>
-		<div class="viewbody">
-			
+		<div class="viewbody">	
 			
 			<table class="tableView">
 				<thead>
@@ -29,23 +28,20 @@
 				<tbody>
 
 					@foreach($timesheet as $t)
-					<tr>
-
-						<td class="td1">{{$t->id}}</td>
-						<td class="td2">{{$t->name}}</td>
-						<td class="td3">{{$t->submit_date}}</td>
-						<td class="td3">{{$t->start_time}}</td>
-						<td class="td3">{{$t->end_time}}</td>
-						<td class="td4">{{$t->details}}</td>
-						<td class="td5">{{$t->issue}}</td>
-						<td class="td6">{{$t->intention}}</td>
-						<td class="td7">{{$t->late_flg}}</td>
+						<tr>
+							<td class="td1">{{$t->id}}</td>
+							<td class="td2">{{$t->name}}</td>
+							<td class="td3">{{$t->submit_date}}</td>
+							<td class="td3">{{$t->start_time}}</td>
+							<td class="td3">{{$t->end_time}}</td>
+							<td class="td4">{{$t->details}}</td>
+							<td class="td5">{{$t->issue}}</td>
+							<td class="td6">{{$t->intention}}</td>
+							<td class="td7">{{$t->late_flg}}</td>
 						
-					</tr>
+						</tr>
 					@endforeach
-					<div>
 
-					</div>
 				</tbody>
 			</table>
 			number of days late: <?php echo $late; ?>

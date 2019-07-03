@@ -16,8 +16,8 @@ class TimesheetController extends Controller
    
     public function index()
     {
-        $email = Auth::user()->email;
-        $timesheet = Timesheet::wherename($email)->get();
+        $id = Auth::user()->id;
+        $timesheet = Timesheet::whereuser_id($id)->get();
 
         return view('timesheet.view', ['timesheet' => $timesheet]);
     }
@@ -27,34 +27,32 @@ class TimesheetController extends Controller
         return view('timesheet.create', ['name' => 'Hello index welcome']);
     }
 
-    public function show($id)
+    public function show(Timesheet $timesheet)
     {
-        $timesheet = Timesheet::find($id);
-
         return view('timesheet.show', ['timesheet' => $timesheet]);
     }
 
     public function store(Request $request)
     {  
         $request->validate([
-           'details' => 'required',]
-        );
+           'details' => 'required'
+            ]);
 
         $email = Auth::user()->email;
-        $dt = Carbon::now('Asia/Ho_Chi_Minh')->hour;
-        $submit_date = Carbon::now('Asia/Ho_Chi_Minh');
-        echo $submit_date->toDateString();
+        $dt = Carbon::now()->hour;
+        echo $submit_date = Carbon::now()->toDateString();
 
-        if($dt<17){
-            $late =0;
+        if($dt < 11){
+            $late = false;
         }
         else{
-            $late=1;
+            $late = true;
         }
 
-        $product_id = Timesheet::create([
-            'name' => $email,
-            'submit_date' => $submit_date/*$request->input('submit_date')*/,
+        $user = Auth::user();
+        $timesheet = $user->timesheets()->create([
+            'name' => $request->input('name'),
+            'submit_date' => $submit_date,
             'start_time' => $request->input('start_time'),
             'end_time' => $request->input('end_time'),
             'details' => $request->input('details'),
@@ -62,20 +60,17 @@ class TimesheetController extends Controller
             'intention' => $request->input('intention'),
             'late_flg' => $late          
         ]); 
-
-        return redirect()->route('timesheets.index')->with('message', ' '. $product_id);
+        
+        return redirect()->route('timesheets.index');
     }
 
-    public function edit($id)
+    public function edit(Timesheet $timesheet)
     {
-        $timesheet = Timesheet::find($id);
-
         return view('timesheet.update', ['timesheet'=>$timesheet]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Timesheet $timesheet, Request $request)
     {
-        $timesheet = Timesheet::find($id);
 
         $request->validate(
         [
@@ -83,9 +78,7 @@ class TimesheetController extends Controller
         ]
         );
 
-        $timesheet->details = $request->details;
-        $timesheet->issue = $request->issue;
-        $timesheet->intention = $request->intention;
+        $timesheet->fill($request->except('_token'));
         $timesheet->save();
 
         return redirect()->route('timesheets.index');

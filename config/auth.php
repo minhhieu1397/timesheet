@@ -69,12 +69,14 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+            //'model' => App\Models\Timesheet::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+       /* 'timesheets' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Timesheet::class,        
+        ],*/
+
     ],
 
     /*

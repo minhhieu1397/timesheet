@@ -1,9 +1,8 @@
 @extends ('layout.main')
 @section('content')
 
-
-
 <form action="{{ route('timesheets.update',$timesheet->id) }}" method="POST" role="form">
+					{{ method_field('PUT') }}
 					{{ csrf_field() }}
 <div class="container">
 		<div class="row">
@@ -13,8 +12,7 @@
 					
 				<div class="form-group">
 					<label for="">Details</label>
-					<input type="text" class="form-work" id="details" placeholder="Details" name="details">
-						
+					<input type="text" class="form-work" id="details" placeholder="Details" name="details">						
 				</div>
 
 				<div class="form-group">
@@ -27,13 +25,13 @@
 					<input type="text" class="form-control" id="intention" placeholder="Intention" name="intention" value="{{$timesheet->intention}}" required>
 				</div>
 				<div>
-						 @if ($errors->has('name'))
+					@if ($errors->has('name'))
                     	<span class="text-danger">{{ $errors->first('name') }}</span>
-                		@endif
+                	@endif
                 		  
-                			@if ($errors->has('details'))
+                	@if ($errors->has('details'))
                     	<span class="text-danger">{{ $errors->first('details') }}</span>
-                		@endif		
+                	@endif		
 				</div>
 				
 				<button type="submit" class="btn">Update</button>

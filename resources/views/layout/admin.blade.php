@@ -8,29 +8,22 @@
 </head>
 <body>
 
-		
-	
-			<div class="Cla" id="content">
+		<div class="Cla" id="content">
 			
-				<ul class="ul1">
-					<li><a href="{{route('users.index')}}"> View Users</a>   </li>
-										
-				
-				</ul>
-				<ul class="ul2">
-					<li><a href="{{route('users.logout')}}"> Đăng xuất</a>   </li>
+			<ul class="ul1">
+				<li><a href="{{route('users.index')}}"> View Users</a>   </li>										
+			</ul>
+
+			<ul class="ul2">
+				<li><a href="{{route('users.logout')}}"> Đăng xuất</a>   </li>
 					
 				</ul>
-			</div>
-		
+			</div>	
 	
-	
-	<div class="top">
-		
+	<div class="top">		
 
 		@yield ('content')
 		
-
 	</div>
 
 </body>

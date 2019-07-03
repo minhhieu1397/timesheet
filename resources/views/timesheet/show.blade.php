@@ -9,7 +9,6 @@
 			<h3 class="viewtitle"> View</h3>
 		</div>
 		<div class="viewbody">
-			
 			<table class="tableView">
 				<thead>
 					<tr class="namee">
@@ -38,11 +37,10 @@
 						<td class="td6">{{$timesheet->intention}}</td>
 						<td class="td7">{{$timesheet->late_flg}}</td>
 						<td> 
-							<a href="{{route('timesheets.edit',$timesheet['id'])}}" >Edit</a>
+							<a href="{{route('timesheets.edit', $timesheet['id'])}}" >Edit</a>
 						</td>
 					</tr>						
 				</tbody>
-				
 			</table>
 		</div>
 	</div>

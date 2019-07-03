@@ -13,12 +13,12 @@ use Illuminate\Support\MessageBag;
 class UserController extends Controller
 {
     
-    public function signin()
-	  {
-		    return view('user.signin');
-	  }
+    public function login()
+	{
+		return view('user.signin');
+	}
 
-    public function signinpost(Request $request)
+    public function loginpost(Request $request)
     {
         $email = $request->input('email');
         $password = $request->input('password');
@@ -33,14 +33,14 @@ class UserController extends Controller
         } 
         else {
             $errors = new MessageBag(['errorlogin' => 'email or password is incorrect ']);
-            return redirect()->route('users.signin')->withErrors($errors);
+            return redirect()->route('users.login')->withErrors($errors);
         } 
     }
 
-	  public function create()
-	  {
-		    return view('user.signup');
-	  }
+	public function create()
+	{
+		return view('user.signup');
+	}
 
     public function store(Request $request)
   	{
@@ -61,19 +61,19 @@ class UserController extends Controller
     {
         Auth::logout();
 
-        return redirect()->route('users.signin');
+        return redirect()->route('users.login');
     }
 
      public function index()
     {
         return view('user.view', [
-                'users' => User::all()
+                'user' => User::all()
                 ]);
     }
 
-    public function show($email){
-        $timesheet = Timesheet::wherename($email)->get();
-        $late = Timesheet::wherename($email)->wherelate_flg(1)->count();
+    public function show(User $user){
+        $timesheet = Timesheet::whereuser_id($user->id)->get();
+        $late = Timesheet::whereuser_id($user->id)->wherelate_flg(1)->count();
 
         return view('user.show', ['timesheet' => $timesheet],compact('late'));
     }
