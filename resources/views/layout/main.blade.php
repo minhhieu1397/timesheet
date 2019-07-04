@@ -19,7 +19,7 @@
 			<ul class="ul2">
 					<li><a href="{{route('users.logout')}}"> Đăng xuất</a>   </li>					
 			</ul>
-			</div>			
+		</div>			
 	
 	<div class="top">		
 

@@ -17,6 +17,7 @@
 	float: left;
 	line-height: 90px;
 	margin-left: 20px;
+
 }
 .ul1 li a{
 	color: #FFFFFF;
@@ -33,6 +34,7 @@
 	float: right;
 	line-height: 150px;
 	margin-left: 20px;
+	margin-bottom:40px;
 }
 .ul2 li a{
 	color: #FFFFFF;

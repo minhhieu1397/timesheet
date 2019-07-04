@@ -12,7 +12,7 @@ use Illuminate\Support\MessageBag;
 
 class UserController extends Controller
 {
-    
+
     public function login()
 	{
 		return view('user.signin');
@@ -45,16 +45,17 @@ class UserController extends Controller
     public function store(Request $request)
   	{
         $request->validate([
-            'email' => 'required|email',         
-            'password' => 'required|min:8'
+            'email' => 'required|email|unique:users',         
+            'password' => 'required_with:password_confirmation|same:password_confirmation|min:8',
+            'password_confirmation' => 'min:6'
             ]);
 
-        $product_id = User::create([
+        $User = User::create([
             'email' => $request->input('email'),    
             'password' => \Hash::make($request->input('password'))          
             ]);
 
-        return redirect()->route('timesheets.index');
+        return redirect()->route('users.login')->withSuccess( 'Register is successfuly' );;
     }
 
     public function Logout() 

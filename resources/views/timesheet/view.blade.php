@@ -39,7 +39,7 @@
 							<td class="td6">{{$timesheet->intention}}</td>
 							<td class="td7">{{$timesheet->late_flg}}</td>
 							<td> 
-							<a href="{{route('timesheets.show', $timesheet['id'])}}" >View</a>
+								<a href="{{route('timesheets.show', $timesheet['id'])}}" >View</a>
 							
 							<form action="{{route('timesheets.destroy', $timesheet['id']) }}" method="POST">
 								{{ method_field('DELETE') }}

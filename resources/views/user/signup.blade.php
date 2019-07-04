@@ -14,7 +14,12 @@
 
 					<div class="form-group">
 						<label class="lbemail" for="">Password</label>   		
-						<input type="text" class="form-control" id="password" placeholder="Password" name="password">										       	
+						<input type="password" class="form-control" id="password" placeholder="Password" name="password">										       	
+					</div>
+
+					<div class="form-group">
+						<label class="lbemail" for="">Confirm Password</label>   		
+						<input type="password" class="form-control" id="password_confirmation" placeholder="Confirm Password" name="password_confirmation">										       	
 					</div>
 					
 					<div class="error1" >

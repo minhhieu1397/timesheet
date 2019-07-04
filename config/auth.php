@@ -72,10 +72,10 @@ return [
             //'model' => App\Models\Timesheet::class,
         ],
 
-       /* 'timesheets' => [
+        'timesheets' => [
             'driver' => 'eloquent',
             'model' => App\Models\Timesheet::class,        
-        ],*/
+        ],
 
     ],
 

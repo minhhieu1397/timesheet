@@ -10,7 +10,6 @@ use App\Models\Timesheet;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
-
 class TimesheetController extends Controller
 { 
    
@@ -42,7 +41,7 @@ class TimesheetController extends Controller
         $dt = Carbon::now()->hour;
         echo $submit_date = Carbon::now()->toDateString();
 
-        if($dt < 11){
+        if($dt < 17){
             $late = false;
         }
         else{
