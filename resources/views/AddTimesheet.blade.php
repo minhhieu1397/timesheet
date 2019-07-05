@@ -24,6 +24,7 @@
 						<label for="">Work</label>
 						<input type="text" class="form-control" id="work" placeholder="Work" name="work">
 					</div>
+					
 					<div class="form-group">
 						<label for="">Difficulty</label>
 						<input type="text" class="form-control" id="difficulty" placeholder="Difficulty" name="difficulty">

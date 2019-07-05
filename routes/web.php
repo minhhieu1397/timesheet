@@ -19,16 +19,16 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/timesheets', 'TimesheetController@store')->name('timesheets.store');
 	Route::get('/timesheets/{timesheet}/edit', 'TimesheetController@edit')->name('timesheets.edit');
 	Route::put('/timesheets/{timesheet}/edit', 'TimesheetController@update')->name('timesheets.update');
-	Route::delete('/timesheets/{id}', 'TimesheetController@destroy')->name('timesheets.destroy');
+	Route::delete('/timesheets/{timesheet}', 'TimesheetController@destroy')->name('timesheets.destroy');
 });
 
 
 
 Route::get('/', 'UserController@login')->name('users.login');
-Route::post('/users/login', 'UserController@loginpost')->name('users.login.post');
+Route::post('/users/login', 'UserController@postlogin')->name('users.login.post');
 Route::get('/users/register', 'UserController@create')->name('users.create');	
 Route::post('/users/register', 'UserController@store')->name('users.store');
-Route::get('logout', 'UserController@Logout')->name('users.logout');
+Route::get('logout', 'UserController@logout')->name('users.logout');
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/users', 'UserController@index')->name('users.index');

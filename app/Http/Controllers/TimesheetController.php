@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateTimesheetRequest;
+use App\Http\Requests\UpdateRequest;
+use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Validation\ValidationName;
 use App\Models\Timesheet;
@@ -12,7 +15,6 @@ use Illuminate\Support\Facades\Auth;
 
 class TimesheetController extends Controller
 { 
-   
     public function index()
     {
         $id = Auth::user()->id;
@@ -31,27 +33,34 @@ class TimesheetController extends Controller
         return view('timesheet.show', ['timesheet' => $timesheet]);
     }
 
-    public function store(Request $request)
+    public function store(CreateTimesheetRequest $request)
     {  
-        $request->validate([
-           'details' => 'required'
-            ]);
-
-        $email = Auth::user()->email;
         $dt = Carbon::now()->hour;
-        echo $submit_date = Carbon::now()->toDateString();
+        echo $now = Carbon::now()->toDateString();
+        $submitdate = $request->input('submit_date');
+        $first_date = strtotime($submitdate);
+        $second_date = strtotime($now);
+        $datediff = abs($first_date - $second_date);
+        echo floor($datediff / (60 * 60 * 24));
 
-        if($dt < 17){
-            $late = false;
-        }
-        else{
+        if ($datediff == 0) {
+            if ($dt < 17) {
+                $late = false;
+            } else {
+                $late = true;
+            }
+        } elseif ($datediff > 0) {
             $late = true;
+        }
+        
+        if (strtotime($submitdate) > strtotime($now)) {
+            return redirect()->route('timesheets.create')->withSuccess('Wrong date');
         }
 
         $user = Auth::user();
         $timesheet = $user->timesheets()->create([
             'name' => $request->input('name'),
-            'submit_date' => $submit_date,
+            'submit_date' => $request->input('submit_date'),
             'start_time' => $request->input('start_time'),
             'end_time' => $request->input('end_time'),
             'details' => $request->input('details'),
@@ -68,25 +77,17 @@ class TimesheetController extends Controller
         return view('timesheet.update', ['timesheet'=>$timesheet]);
     }
 
-    public function update(Timesheet $timesheet, Request $request)
+    public function update(Timesheet $timesheet, UpdateRequest $request)
     {
-
-        $request->validate(
-        [
-           'details' => 'required'
-        ]
-        );
-
         $timesheet->fill($request->except('_token'));
         $timesheet->save();
 
         return redirect()->route('timesheets.index');
    }
 
-    public function destroy($id){
-        Timesheet::destroy($id);
+    public function destroy($timesheet){
+        Timesheet::destroy($timesheet);
 
         return redirect()->route('timesheets.index');
    }
-
 }

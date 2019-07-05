@@ -26,8 +26,12 @@
 					</tr>
 				</thead>
 				<tbody>
-
-					@foreach($timesheet as $t)
+					@php $late = 0; @endphp
+					@foreach ($timesheets as $t)
+						@php
+						if ($t->late_flg)
+							$late++;
+						@endphp
 						<tr>
 							<td class="td1">{{$t->id}}</td>
 							<td class="td2">{{$t->name}}</td>
@@ -41,10 +45,9 @@
 						
 						</tr>
 					@endforeach
-
 				</tbody>
 			</table>
-			number of days late: <?php echo $late; ?>
+			number of days late: {{ $late }}
 		</div>
 	</div>
 

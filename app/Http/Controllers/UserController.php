@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use App\Models\Timesheet;
 use Illuminate\Support\Facades\Validator;
@@ -12,27 +14,24 @@ use Illuminate\Support\MessageBag;
 
 class UserController extends Controller
 {
-
     public function login()
 	{
 		return view('user.signin');
 	}
 
-    public function loginpost(Request $request)
+    public function postlogin(LoginRequest $request)
     {
         $email = $request->input('email');
         $password = $request->input('password');
 
-        if( Auth::attempt(['email' => $email, 'password' => $password])){
-            if( $email=="admin@gmail.com" ){
+        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+            if (Auth::user()->level == 1) {
                 return redirect()->route('users.index');
-            }
-            else{
+            } else {
                 return redirect()->route('timesheets.index');
             }
-        } 
-        else {
-            $errors = new MessageBag(['errorlogin' => 'email or password is incorrect ']);
+        } else {
+            $errors = new MessageBag(['errorlogin' => 'email or password is incorrect']);
             return redirect()->route('users.login')->withErrors($errors);
         } 
     }
@@ -42,23 +41,17 @@ class UserController extends Controller
 		return view('user.signup');
 	}
 
-    public function store(Request $request)
+    public function store(RegisterRequest $request)
   	{
-        $request->validate([
-            'email' => 'required|email|unique:users',         
-            'password' => 'required_with:password_confirmation|same:password_confirmation|min:8',
-            'password_confirmation' => 'min:6'
-            ]);
-
         $User = User::create([
             'email' => $request->input('email'),    
             'password' => \Hash::make($request->input('password'))          
-            ]);
+        ]);
 
-        return redirect()->route('users.login')->withSuccess( 'Register is successfuly' );;
+        return redirect()->route('users.login')->withSuccess( 'Register is successfuly' );
     }
 
-    public function Logout() 
+    public function logout() 
     {
         Auth::logout();
 
@@ -68,15 +61,15 @@ class UserController extends Controller
      public function index()
     {
         return view('user.view', [
-                'user' => User::all()
-                ]);
+            'user' => User::all()
+        ]);
     }
 
-    public function show(User $user){
-        $timesheet = Timesheet::whereuser_id($user->id)->get();
-        $late = Timesheet::whereuser_id($user->id)->wherelate_flg(1)->count();
+    public function show(User $user)
+    {
+        $timesheets = $user->timesheets; 
 
-        return view('user.show', ['timesheet' => $timesheet],compact('late'));
+        return view('user.show', ['timesheets' => $timesheets]);
     }
     
 }

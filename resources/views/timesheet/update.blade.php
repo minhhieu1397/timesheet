@@ -32,7 +32,6 @@
                 	@if ($errors->has('details'))
                     	<span class="text-danger">{{ $errors->first('details') }}</span>
                 	@endif		
-				</div>
 				
 				<button type="submit" class="btn">Update</button>
 

@@ -36,6 +36,7 @@
 						<td class="td5">{{$timesheet->issue}}</td>
 						<td class="td6">{{$timesheet->intention}}</td>
 						<td class="td7">{{$timesheet->late_flg}}</td>
+						
 						<td> 
 							<a href="{{route('timesheets.edit', $timesheet['id'])}}" >Edit</a>
 						</td>

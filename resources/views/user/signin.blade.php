@@ -26,7 +26,7 @@
                     		<span class="text-danger">{{ $errors->first('errorlogin') }}</span>
                 		@endif
 
-                		@if( Session::has( 'success' ))
+                		@if (Session::has( 'success' ))
     						 {{ Session::get( 'success' ) }}
 						@endif
 					</div>

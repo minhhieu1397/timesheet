@@ -15,6 +15,11 @@
 					</div>
 
 					<div class="form-group">
+						<label for="">Date(YYYY-MM-DD)</label>
+						<input type="text" class="form-control" id="submit_date" placeholder="Submit Date" name="submit_date">						
+					</div>
+
+					<div class="form-group">
 						<label for="">Start time</label>
 						<input type="text" class="form-control" id="start_time" placeholder="Start time" name="start_time">						
 					</div>
@@ -48,6 +53,9 @@
                 		@if ($errors->has('submit_date'))
                     		<span class="text-danger">{{ $errors->first('submit_date') }}</span>
                 		@endif
+                		@if (Session::has( 'success'))
+    						 {{ Session::get( 'success' ) }}
+						@endif
                 		 
 					</div>
 
