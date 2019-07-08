@@ -16,7 +16,7 @@
 
 					<div class="form-group">
 						<label for="">Date(YYYY-MM-DD)</label>
-						<input type="text" class="form-control" id="submit_date" placeholder="Submit Date" name="submit_date">						
+						<input type="text" class="form-control" id="work_date" placeholder="Work Date" name="work_date">						
 					</div>
 
 					<div class="form-group">
@@ -50,9 +50,14 @@
                     		<span class="text-danger">{{ $errors->first('details') }}</span>
                 		@endif
                 		 
-                		@if ($errors->has('submit_date'))
-                    		<span class="text-danger">{{ $errors->first('submit_date') }}</span>
+                		@if ($errors->has('work_date'))
+                    		<span class="text-danger">{{ $errors->first('work_date') }}</span>
                 		@endif
+
+                		@if ($errors->has('issue'))
+                    		<span class="text-danger">{{ $errors->first('issue') }}</span>
+                		@endif
+                		
                 		@if (Session::has( 'success'))
     						 {{ Session::get( 'success' ) }}
 						@endif

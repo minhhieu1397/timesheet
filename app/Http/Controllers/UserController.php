@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\LoginRequest;
-use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\User\LoginRequest;
+use App\Http\Requests\User\RegisterRequest;
 use App\Models\User;
 use App\Models\Timesheet;
 use Illuminate\Support\Facades\Validator;
@@ -25,7 +25,7 @@ class UserController extends Controller
         $password = $request->input('password');
 
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
-            if (Auth::user()->level == 1) {
+            if (Auth::user()->is_admin == 1) {
                 return redirect()->route('users.index');
             } else {
                 return redirect()->route('timesheets.index');
@@ -71,5 +71,4 @@ class UserController extends Controller
 
         return view('user.show', ['timesheets' => $timesheets]);
     }
-    
 }

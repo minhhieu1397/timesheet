@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Timesheet;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,7 +24,9 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'details' => 'required'
+            'details' => 'required|string',
+            'issue' => 'string',
+            'intention' => 'string'
         ];
     }
 }

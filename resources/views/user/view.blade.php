@@ -24,7 +24,8 @@
 						<tr>
 							<td class="nb1">{{$user->id}}</td>
 							<td class="nb2">{{$user->email}}</td>
-							<td><a href="{{route('users.show',$user['id'])}}" class="nb3">VIEW</a></td>
+							<td><a href="{{route('users.show', $user['id'])}}" class="nb3">VIEW</a>
+							</td>
 						</tr>
 					@endforeach
 					

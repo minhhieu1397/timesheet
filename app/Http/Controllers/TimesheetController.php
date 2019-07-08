@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Requests\CreateTimesheetRequest;
-use App\Http\Requests\UpdateRequest;
+use App\Http\Requests\Timesheet\CreateRequest;
+use App\Http\Requests\Timesheet\UpdateRequest;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Validation\ValidationName;
@@ -17,10 +17,10 @@ class TimesheetController extends Controller
 { 
     public function index()
     {
-        $id = Auth::user()->id;
-        $timesheet = Timesheet::whereuser_id($id)->get();
+        $user = Auth::user();
+        $timesheets = $user->timesheets;
 
-        return view('timesheet.view', ['timesheet' => $timesheet]);
+        return view('timesheet.view', ['timesheets' => $timesheets]);
     }
 
     public function create()
@@ -33,40 +33,27 @@ class TimesheetController extends Controller
         return view('timesheet.show', ['timesheet' => $timesheet]);
     }
 
-    public function store(CreateTimesheetRequest $request)
+    public function store(CreateRequest $request)
     {  
-        $dt = Carbon::now()->hour;
-        echo $now = Carbon::now()->toDateString();
-        $submitdate = $request->input('submit_date');
-        $first_date = strtotime($submitdate);
-        $second_date = strtotime($now);
-        $datediff = abs($first_date - $second_date);
-        echo floor($datediff / (60 * 60 * 24));
-
-        if ($datediff == 0) {
-            if ($dt < 17) {
-                $late = false;
-            } else {
-                $late = true;
-            }
-        } elseif ($datediff > 0) {
-            $late = true;
-        }
-        
-        if (strtotime($submitdate) > strtotime($now)) {
-            return redirect()->route('timesheets.create')->withSuccess('Wrong date');
+        $now = \Carbon\Carbon::now();
+        $workDate = $request->input('work_date');
+        $diff = $now->diffInSeconds(\Carbon\Carbon::parse($workDate)->hour(17),false);
+        if ($diff >= 0) {
+            $lateFlg = false;
+        } else {
+            $lateFlg = true;
         }
 
         $user = Auth::user();
         $timesheet = $user->timesheets()->create([
             'name' => $request->input('name'),
-            'submit_date' => $request->input('submit_date'),
+            'work_date' => $request->input('work_date'),
             'start_time' => $request->input('start_time'),
             'end_time' => $request->input('end_time'),
             'details' => $request->input('details'),
             'issue' => $request->input('issue'),
             'intention' => $request->input('intention'),
-            'late_flg' => $late          
+            'late_flg' => $lateFlg
         ]); 
         
         return redirect()->route('timesheets.index');

@@ -27,7 +27,7 @@
 				</thead>
 				<tbody>
 					
-					@foreach($timesheet as $timesheet)
+					@foreach($timesheets as $timesheet)
 						<tr>
 							<td class="td1">{{$timesheet->id}}</td>
 							<td class="td2">{{$timesheet->name}}</td>
@@ -41,13 +41,13 @@
 							<td> 
 								<a href="{{route('timesheets.show', $timesheet['id'])}}" >View</a>
 							
-							<form action="{{route('timesheets.destroy', $timesheet['id']) }}" method="POST">
+							<form action="{{route('timesheets.destroy', $timesheet['id'])}}" method="POST">
 								{{ method_field('DELETE') }}
 								{{ csrf_field() }}
 								<button type="submig">Delete</button>
 							</form>
-						</td>
-					</tr>
+							</td>
+						</tr>
 					@endforeach
 				</tbody>
 			</table>
