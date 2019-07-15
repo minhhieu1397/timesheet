@@ -1,108 +1,65 @@
-.container{
-	background-color: #CCFFFF;
-	margin: bottom;
-}
-.Add{
-	font-size: 50px;
-	text-align:center;
 
-}
-.btncre{
-	text-align:center;
-}
-
-form .form-control{
-	text-align: center;
-	
-  	padding: 7px 100px;
-  	margin-bottom: 7px;
-}
-form .form-work{
-	
-	
-  	padding: 40px 100px;
-  	margin-bottom: 7px;
-}
-form .form-control:hover {
-  background: #f1f7fa;
-}
-
-form label {
-  display: inline-block; 
-  font-size: 1.2em;
-  font-weight: bold;
-  width: 200px;
-  padding: 6px 0;
-  color: #464646;
-  vertical-align: top;
-}
-
-.col-offset {
-	text-align: center;
-}
-.row{
-	text-align: center;
-}
-
-form .req { color: #ca5354; }
-.view{
-	
-	margin: bottom;
-	
-
-
-}
-.viewtitle{
-	font-size: 50px;
-	text-align:center;
-	
-
-}
-.tableView{
-	height: 100%;
+.header{
 	width: 100%;
-	background-color: #CCFFFF;
-	margin: bottom;
-	text-align:center;
+	height: 150px;
+	border: 1px solid #404040FF;
+	margin: auto;	
+	background-color:#212121FF ;
+}
 
+.title{
+	color: #FFFFFFFF;
+	font-size: 50px;
+	font-family: Arnoldboecklin, fantasy;
+	margin-left: 140px;
+	margin-top:30px;
+	font-style: oblique; 
 }
-.viewbody{
-	text-align:center;
+.listtimesheet{
+	color: #FFFFFFFF;
+	font-size: 30px;
+	font-family: Arnoldboecklin, fantasy;
+	margin-left: 140px;
+	margin-top: 10px;
+	font-style: oblique; 
 }
-.namee{
-	background-color: #00CCFF;
+.listtimesheet ul{
+	list-style: none;
 }
-.td1{
-	width: 3%;
+.listtimesheet ul li{
+	float: left;
+	line-height: 10px;
+	margin-left: 15px;
+}
+.listtimesheet ul li a{
+	color: #FFFFFFFF;
+	text-decoration: none;
+	font-family: Coronetscript, cursive;
+}
+.listtimesheet a:hover{
+	text-decoration: underline;
+}
 
+.list ul{
+	list-style: none;
+	margin-top: 5px;
 }
-.td2{
-	width: 10%;
-	text-align: left;
-
+.list ul li{
+	float: right;
+	line-height: 10px;
+	margin-right: 15px;
 }
-.td3{
-	width: 7%;
-	text-align: left;
-
+.list ul li a{
+	color: #FFFFFFFF;
+	text-decoration: none;
+	font-family: Coronetscript, cursive;
 }
-.td41{
-	width: 15%;
-	text-align: center;
-
+.list a:hover{
+	text-decoration: underline;
 }
-.td4{
-	width: 15%;
-	text-align: left;
-
+.table__title{
+	background-color:#09D7FFFF;
 }
-.td5{
-	width: 15%;
-	text-align: left;
-
-}
-.td6{
-	width: 15%;
-	text-align: left;
-
+.table__content{
+	background-color: #FFFFFFFF;
 }

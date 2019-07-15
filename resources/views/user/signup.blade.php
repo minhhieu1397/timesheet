@@ -3,22 +3,22 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-offset">
+			<div class="col-md-6 offset-md-4">
 				<form action="{{ route('users.store') }}" method="POST" role="form" >
 					{{ csrf_field() }}
-					<legend class="Add"> Register </legend>
+					<h1>Register</h1>
 					<div class="form-group">
-						<label class="lbemail" for="">Email</label>
-						<input type="text" class="form-control" id="Siemail" placeholder="Email" name="email">	
+						<label class="lbemail" for="email">Email:</label>
+						<input type="text" class="form-control" id="email" placeholder="Email" name="email">	
 					</div>
 
 					<div class="form-group">
-						<label class="lbemail" for="">Password</label>   		
+						<label class="lbemail" for="password">Password:</label>   		
 						<input type="password" class="form-control" id="password" placeholder="Password" name="password">										       	
 					</div>
 
 					<div class="form-group">
-						<label class="lbemail" for="">Confirm Password</label>   		
+						<label class="lbemail" for="password_confirmation">Confirm Password:</label>   		
 						<input type="password" class="form-control" id="password_confirmation" placeholder="Confirm Password" name="password_confirmation">										       	
 					</div>
 					
@@ -32,15 +32,13 @@
                 		@endif
 					</div>
 					
-					
 					<div class="btncre">
-						<button type="submit" class="btn btn-primary">Sign In</button>
+						<button type="submit" class="btn btn-primary">SignIn</button>
 					</div>
 
 				</form>
 			</div>
-		</div>
-		
+		</div>	
 	</div>
 
 

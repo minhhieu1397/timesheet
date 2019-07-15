@@ -71,4 +71,10 @@ class UserController extends Controller
 
         return view('user.show', ['timesheets' => $timesheets]);
     }
+    public function destroy($user)
+    {
+        User::destroy($user);
+
+        return redirect()->route('users.index');
+    }
 }

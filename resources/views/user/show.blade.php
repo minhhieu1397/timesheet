@@ -1,55 +1,47 @@
 @extends ('layout.admin')
-
-@section('content')
-	
-
-
-	<div class="view">
-		<div class="view1">
-			<h3 class="viewtitle"> View</h3>
-		</div>
-		<div class="viewbody">	
-			
-			<table class="tableView">
-				<thead>
-					<tr class="namee">
-						<th class="td1">ID</th>
-						<th class="td2">NAME</th>
-						<th class="td3">SUBMIT DATE</th>
-						<th class="td3">START TIME</th>
-						<th class="td3">END TIME</th>
-						<th class="td41">DETAILS</th>
-						<th class="td5">ISSUE</th>
-						<th class="td6">INTENTION</th>
-						<th class="td7">LATE</th>
-						<th ></th>
-					</tr>
-				</thead>
-				<tbody>
-					@php $late = 0; @endphp
-					@foreach ($timesheets as $t)
-						@php
-						if ($t->late_flg)
-							$late++;
-						@endphp
-						<tr>
-							<td class="td1">{{$t->id}}</td>
-							<td class="td2">{{$t->name}}</td>
-							<td class="td3">{{$t->submit_date}}</td>
-							<td class="td3">{{$t->start_time}}</td>
-							<td class="td3">{{$t->end_time}}</td>
-							<td class="td4">{{$t->details}}</td>
-							<td class="td5">{{$t->issue}}</td>
-							<td class="td6">{{$t->intention}}</td>
-							<td class="td7">{{$t->late_flg}}</td>
-						
+@section('admin')
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1> View</h1>		
+				<table class="table table-condensed">
+					<thead>
+						<tr class="table__title">
+							<th>ID</th>
+							<th>NAME</th>
+							<th>SUBMIT DATE</th>
+							<th>START TIME</th>
+							<th>END TIME</th>
+							<th>DETAILS</th>
+							<th>ISSUE</th>
+							<th>INTENTION</th>
+							<th>LATE</th>
 						</tr>
-					@endforeach
-				</tbody>
-			</table>
-			number of days late: {{ $late }}
+					</thead>
+					<tbody>
+						@php $late = 0; @endphp
+						@foreach ($timesheets as $t)
+							@php
+							if ($t->late_flg)
+								$late++;
+							@endphp
+							<tr class="table__content">
+								<td>{{$t->id}}</td>
+								<td>{{$t->name}}</td>
+								<td>{{$t->submit_date}}</td>
+								<td>{{$t->start_time}}</td>
+								<td>{{$t->end_time}}</td>
+								<td>{{$t->details}}</td>
+								<td>{{$t->issue}}</td>
+								<td>{{$t->intention}}</td>
+								<td>{{$t->late_flg}}</td>				
+							</tr>
+						@endforeach
+					</tbody>
+				</table>
+				number of days late: {{ $late }}
+			</div>
 		</div>
 	</div>
-
-
+	
 @stop()

@@ -1,38 +1,38 @@
 @extends ('layout.admin')
 
-@section('content')
+@section('admin')
 	
-
-
-	<div class="view">
-		<div class="view1">
-			<h3 class="viewtitle"> View</h3>
-		</div>
-		<div class="viewbody">
-			
-			<table class="tableView">
-				<thead>
-					<tr class="namee">
-						<th class="nb1">ID</th>
-						<th class="nb2">EMAIL</th>						
-						<th class="nb3">VIEW</th>
-					</tr>
-				</thead>
-				<tbody>
-					
-					@foreach ($user as $user)
-						<tr>
-							<td class="nb1">{{$user->id}}</td>
-							<td class="nb2">{{$user->email}}</td>
-							<td><a href="{{route('users.show', $user['id'])}}" class="nb3">VIEW</a>
-							</td>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1> View</h1>
+				<table class="table table-condensed" >
+					<thead>
+						<tr class="table__title">
+							<th class="nb1">ID</th>
+							<th class="nb2">EMAIL</th>						
+							<th class="nb3">VIEW</th>
 						</tr>
-					@endforeach
-					
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						@foreach ($user as $user)
+							<tr class="table__content">
+								<td class="nb1">{{$user->id}}</td>
+								<td class="nb2">{{$user->email}}</td>
+								<td>
+									<a href="{{route('users.show', $user['id'])}}">VIEW</a>
+									<form action="{{route('users.destroy', $user['id'])}}" method="POST">
+										{{ method_field('DELETE') }}
+										{{ csrf_field() }}
+										<button class="btn btn-danger" type="submig">Delete</button>
+									</form>
+								</td>
+							</tr>
+						@endforeach
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
-
 
 @stop()

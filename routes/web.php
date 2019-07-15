@@ -33,4 +33,5 @@ Route::get('logout', 'UserController@logout')->name('users.logout');
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/users', 'UserController@index')->name('users.index');
 	Route::get('/users/{user}', 'UserController@show')->name('users.show');
+	Route::delete('/users/{user}', 'UserController@destroy')->name('users.destroy');
 });
