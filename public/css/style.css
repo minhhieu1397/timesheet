@@ -20,7 +20,7 @@
 	font-size: 30px;
 	font-family: Arnoldboecklin, fantasy;
 	margin-left: 140px;
-	margin-top: 10px;
+	margin-top: 20px;
 	font-style: oblique; 
 }
 .listtimesheet ul{
@@ -31,11 +31,11 @@
 	line-height: 10px;
 	margin-left: 15px;
 }
-.listtimesheet ul li a{
+/* .listtimesheet a{
 	color: #FFFFFFFF;
 	text-decoration: none;
 	font-family: Coronetscript, cursive;
-}
+} */
 .listtimesheet a:hover{
 	text-decoration: underline;
 }

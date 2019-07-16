@@ -11,7 +11,6 @@
 |
 */
 
-
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/timesheets', 'TimesheetController@index')->name('timesheets.index');
 	Route::get('/timesheets/create', 'TimesheetController@create')->name('timesheets.create');
@@ -21,8 +20,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('/timesheets/{timesheet}/edit', 'TimesheetController@update')->name('timesheets.update');
 	Route::delete('/timesheets/{timesheet}', 'TimesheetController@destroy')->name('timesheets.destroy');
 });
-
-
 
 Route::get('/', 'UserController@login')->name('users.login');
 Route::post('/users/login', 'UserController@postlogin')->name('users.login.post');

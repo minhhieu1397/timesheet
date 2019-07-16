@@ -2,9 +2,8 @@
 
 @section('admin')
 	
-	<div class="container">
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-10 offset-md-1">
 				<h1> View</h1>
 				<table class="table table-condensed" >
 					<thead>
@@ -33,6 +32,4 @@
 				</table>
 			</div>
 		</div>
-	</div>
-
 @stop()
