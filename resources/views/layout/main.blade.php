@@ -14,7 +14,6 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha256-azvvU9xKluwHFJ0Cpgtf0CYzK7zgtOznnzxV4924X1w=" crossorigin="anonymous" />
 	<link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
 
-
 </head>
 
 <body>
@@ -39,7 +38,7 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="{{route('users.logout')}}">Đăng xuất</a>
+						<a class="nav-link" href="{{route('users.logout')}}">Logout</a>
 					</li>
 				</ul>
 			</div>
