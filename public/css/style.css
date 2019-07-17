@@ -31,11 +31,7 @@
 	line-height: 10px;
 	margin-left: 15px;
 }
-/* .listtimesheet a{
-	color: #FFFFFFFF;
-	text-decoration: none;
-	font-family: Coronetscript, cursive;
-} */
+
 .listtimesheet a:hover{
 	text-decoration: underline;
 }
@@ -62,4 +58,19 @@
 }
 .table__content{
 	background-color: #FFFFFFFF;
+}
+	
+.Timesheet{
+	color: #42EC0EFF;
+	font-size: 50px;
+	font-family: Arnoldboecklin, fantasy;
+	margin-left: 140px;
+	margin-top:30px;
+	font-style: oblique;
+}
+.list_title{
+	color: #FFFFFFFF;
+	font-size: 20px;
+	font-family: Arnoldboecklin, fantasy;
+	font-style: oblique;
 }

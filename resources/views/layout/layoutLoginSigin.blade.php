@@ -11,7 +11,7 @@
 	<title>Timesheet</title>
 
 	<!-- Bootstrap core CSS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha256-azvvU9xKluwHFJ0Cpgtf0CYzK7zgtOznnzxV4924X1w=" crossorigin="anonymous" />
+	<link rel="stylesheet" href="{{ asset('/css/app.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}"> 
 
 </head>
@@ -20,17 +20,17 @@
 
 <!-- Navigation -->
 	<div class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-		<h1 class="navbar-brand"><em>Timesheet</em></h1>
+		<h1 class="Timesheet">Timesheet</h1>
 	</div>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
 		<div class="container">
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="{{route('users.login')}}">Login</a>
+						<a class="nav-link list_title" href="{{route('users.login')}}">Login</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{{route('users.create')}}">Register</a>
+						<a class="nav-link list_title" href="{{route('users.create')}}">Register</a>
 					</li>
 				</ul>
 			</div>
@@ -40,11 +40,8 @@
 
   <!-- Page Content -->	
 	<div class="container">
-		@yield ('In')
+		@yield ('content')
 	</div>
-  <!-- Bootstrap core JavaScript -->
-	<script src="vendor/jquery/jquery.slim.min.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

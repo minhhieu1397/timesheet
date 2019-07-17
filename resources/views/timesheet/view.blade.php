@@ -4,7 +4,7 @@
 
 	<div class="row">
 		<div class="col-md-10 offset-md-1">
-			<h1 class="h1 text-center"> View</h1>
+			<h1 class="h1 text-center">View</h1>
 
 			<table class="table table-condensed">
 				<thead>

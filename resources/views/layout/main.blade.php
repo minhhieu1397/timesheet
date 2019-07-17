@@ -11,15 +11,16 @@
 	<title>Timesheet</title>
 
 	<!-- Bootstrap core CSS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha256-azvvU9xKluwHFJ0Cpgtf0CYzK7zgtOznnzxV4924X1w=" crossorigin="anonymous" />
+	<link rel="stylesheet" href="{{ asset('/css/app.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
+
 
 </head>
 
 <body>
 
 	<div class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-		<h1 class="navbar-brand"><em>Timesheet</em></h1>
+		<h1 class="Timesheet">Timesheet</h1>
 	</div>
   <!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
@@ -38,7 +39,7 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="{{route('users.logout')}}">Logout</a>
+						<a class="nav-link list_title" href="{{route('users.logout')}}">Logout</a>
 					</li>
 				</ul>
 			</div>
@@ -49,9 +50,6 @@
 	<div class="container">
 		@yield('content')		
 	</div>
-  <!-- Bootstrap core JavaScript -->
-	<script src="vendor/jquery/jquery.slim.min.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
