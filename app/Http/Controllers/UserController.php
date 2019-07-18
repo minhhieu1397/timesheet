@@ -25,7 +25,7 @@ class UserController extends Controller
         $password = $request->input('password');
 
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
-            if (Auth::user()->is_admin == 1) {
+            if (Auth::user()->is_admin == true) {
                 return redirect()->route('users.index');
             } else {
                 return redirect()->route('timesheets.index');
@@ -71,6 +71,7 @@ class UserController extends Controller
 
         return view('user.show', ['timesheets' => $timesheets]);
     }
+    
     public function destroy($user)
     {
         User::destroy($user);

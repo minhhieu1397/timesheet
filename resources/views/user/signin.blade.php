@@ -1,44 +1,40 @@
-@extends ('layout.layoutLoginSigin')
+@extends ('layout.layout_login_sigin')
 @section('content')
 
 	<div class="row">
 		<div class="col-md-4 offset-md-3">
-			<form action="{{ route('users.login.post') }}" method="POST" role="form">
-				{{ csrf_field() }}
-				 <h2 class="h1 text-center">Login</h2>
-				<div class="form-group">
-					<label for="email" class="control-label">Email</label>
-					<input type="text" class="form-control" id="email" placeholder="Email" name="email">
-				</div>
+			<h2 class="h1 text-center">Login</h2>
 
-				<div class="form-group">
-					<label for="password" class="control-label">Password</label>
-					<input type="password" class="form-control" id="password" placeholder="Password" name="password">
-				</div>
-									
+			{!! Form::open(['method' => 'POST', 'route' => 'users.login.post']) !!}
 				<div>
-					@if ($errors->has('password'))
-                		<span class="text-danger">{{ $errors->first('password') }}</span>
-            		@endif
-
-            		@if ($errors->has('email'))
-                		<span class="text-danger">{{ $errors->first('email') }}</span>
-            		@endif
-
-            		@if ($errors->has('errorlogin'))
-                		<span class="text-danger">{{ $errors->first('errorlogin') }}</span>
-            		@endif
+					@if ($errors->any())
+						<div class="alert alert-danger">
+							<ul>
+								@foreach ($errors->all() as $error)
+									<li>{{ $error }}</li>
+								@endforeach
+							</ul>
+						</div>
+					@endif
 
             		@if (Session::has( 'success' ))
 						 {{ Session::get( 'success' ) }}
 					@endif
 				</div>
-				
-				<div class="btncre">
-					<button type="submit" class="btn btn-primary">Login</button>
-				</div>
+        		<div class="form-group">
+	            	{{ Form::label('email', 'Email', ['class' => 'control-label']) }}
+	            	{{ Form::text('email', null, ['class' => 'form-control']) }}
+	       		</div>
 
-			</form>
+	       		<div class="form-group">
+	            	{{ Form::label('password', 'Password', ['class' => 'control-label']) }}
+
+	       			{{ Form::password('password', ['class' => 'form-control']) }}
+	       		</div>
+				<div>
+	       			{!! Form::submit( 'Login', ['class' => 'btn btn-primary']) !!}
+				</div>
+			{!! Form::close() !!}
 		</div>
 	</div>		
 

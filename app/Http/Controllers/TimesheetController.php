@@ -25,7 +25,7 @@ class TimesheetController extends Controller
 
     public function create()
     {
-        return view('timesheet.create', ['name' => 'Hello index welcome']);
+        return view('timesheet.create');
     }
 
     public function show(Timesheet $timesheet)

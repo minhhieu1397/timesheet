@@ -22,7 +22,7 @@
 	<div class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
 		<h1 class="Timesheet">Timesheet	</h1>
 	</div>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+	<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
 		<div class="container">
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
@@ -31,7 +31,7 @@
 					</li>
 				</ul>
 			</div>
-
+	
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
@@ -40,7 +40,8 @@
 				</ul>
 			</div>
 		</div>
-	</nav>
+	</nav> -->
+	@include('partial/admin_nav')
 
 <!-- Page Content -->	
 	<div class="container">

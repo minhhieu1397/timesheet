@@ -38,7 +38,7 @@
 							<form action="{{route('timesheets.destroy', $timesheet['id'])}}" method="POST">
 								{{ method_field('DELETE') }}
 								{{ csrf_field() }}
-								<div class="btncre">
+								<div>
 									<button class="btn btn-danger" type="submig">Delete</button>
 								</div>
 							</form>

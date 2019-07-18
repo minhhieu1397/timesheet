@@ -22,7 +22,7 @@
 	<div class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
 		<h1 class="Timesheet">Timesheet</h1>
 	</div>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+	<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
 		<div class="container">
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
@@ -35,7 +35,8 @@
 				</ul>
 			</div>
 		</div>
-	</nav>
+	</nav> -->
+	@include('partial/login_register_nav')
 	
 
   <!-- Page Content -->	
