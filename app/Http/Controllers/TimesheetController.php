@@ -12,15 +12,22 @@ use App\Http\Validation\ValidationName;
 use App\Models\Timesheet;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Services\TimesheetService;
 
 class TimesheetController extends Controller
 { 
+    protected $timesheetService;
+
+    public function __construct(TimesheetService $timesheetService)
+    {
+        $this->timesheetService = $timesheetService;
+    }
+
     public function index()
     {
-        $user = Auth::user();
-        $timesheets = $user->timesheets;
-
-        return view('timesheet.view', ['timesheets' => $timesheets]);
+    $timesheets = $this->timesheetService->index();
+     
+    return view('timesheet.view', ['timesheets' => $timesheets]);
     }
 
     public function create()
@@ -30,33 +37,20 @@ class TimesheetController extends Controller
 
     public function show(Timesheet $timesheet)
     {
-        return view('timesheet.show', ['timesheet' => $timesheet]);
+       $timesheet = $this->timesheetService->show($timesheet);
+
+       return view('timesheet.show', ['timesheet' => $timesheet]);
     }
 
     public function store(CreateRequest $request)
     {  
-        $now = \Carbon\Carbon::now();
-        $workDate = $request->input('work_date');
-        $diff = $now->diffInSeconds(\Carbon\Carbon::parse($workDate)->hour(17),false);
-        if ($diff >= 0) {
-            $lateFlg = false;
+        if ($this->timesheetService->create($request)) {
+            return redirect()->route('timesheets.index');
         } else {
-            $lateFlg = true;
+            return back()->withInput()->withErrors([
+                'errorCreate' => 'Have an error while creating new timesheet'
+            ]);
         }
-
-        $user = Auth::user();
-        $timesheet = $user->timesheets()->create([
-            'name' => $request->input('name'),
-            'work_date' => $request->input('work_date'),
-            'start_time' => $request->input('start_time'),
-            'end_time' => $request->input('end_time'),
-            'details' => $request->input('details'),
-            'issue' => $request->input('issue'),
-            'intention' => $request->input('intention'),
-            'late_flg' => $lateFlg
-        ]); 
-        
-        return redirect()->route('timesheets.index');
     }
 
     public function edit(Timesheet $timesheet)
@@ -70,6 +64,10 @@ class TimesheetController extends Controller
         $timesheet->save();
 
         return redirect()->route('timesheets.index');
+
+   /* $timesheet = $this->timesheetService->update($request, $timesheet);
+
+    return redirect()->back()->with('status', 'Post has been updated succesfully');*/
    }
 
     public function destroy($timesheet){
