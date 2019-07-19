@@ -35,7 +35,7 @@
 
 	       		
 				<div>
-	       			{!! Form::submit( 'Create', ['class' => 'btn btn-primary']) !!}
+	       			{!! Form::submit( 'Update', ['class' => 'btn btn-primary']) !!}
 				</div>
 			{!! Form::close() !!}
 			

@@ -60,19 +60,19 @@ class TimesheetController extends Controller
 
     public function update(Timesheet $timesheet, UpdateRequest $request)
     {
-        $timesheet->fill($request->except('_token'));
-        $timesheet->save();
+        if ($this->timesheetService->update($request, $timesheet)) {
+        return redirect()->route('timesheets.index');
+        } else {
+            return back()->withInput()->withErrors([
+                'errorUpdate' => 'Have an error while updating timesheet'
+            ]);
+        }
+    }
+
+    public function destroy($timesheet)
+    {
+        $this->timesheetService->delete($timesheet);
 
         return redirect()->route('timesheets.index');
-
-   /* $timesheet = $this->timesheetService->update($request, $timesheet);
-
-    return redirect()->back()->with('status', 'Post has been updated succesfully');*/
-   }
-
-    public function destroy($timesheet){
-        Timesheet::destroy($timesheet);
-
-        return redirect()->route('timesheets.index');
-   }
+    }
 }

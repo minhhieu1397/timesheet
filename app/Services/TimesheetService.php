@@ -3,6 +3,7 @@ namespace App\Services;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\Timesheet\CreateRequest;
+use App\Http\Requests\Timesheet\UpdateRequest;
 use App\Repositories\TimesheetRepository;
 
 class TimesheetService
@@ -43,10 +44,15 @@ class TimesheetService
         return $this->timesheetRepository->find($timesheet->id);
     }
 
- /*   public function update($timesheet, UpdateRequest $request)
+    public function update(UpdateRequest $request, $timesheet)
     {
-      $attributes = $request->all();
+        $attributes = $request->all();
       
-      return $this->timesheetRepository->update($timesheet->id, $attributes);
-    }*/
+        return $this->timesheetRepository->update($timesheet->id, $attributes);
+    }
+
+    public function delete($timesheet)
+    {
+        return $this->timesheetRepository->delete($timesheet);
+    }
 }

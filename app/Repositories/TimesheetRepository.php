@@ -28,8 +28,13 @@ class TimesheetRepository
         return $this->model->find($timesheet);
     }
 
-   /* public function update(Timesheet $timesheet, array $attributes)
+    public function update($timesheet, array $attributes)
     {
         return $this->model->find($timesheet)->update($attributes);
-    }*/
+    }
+
+    public function delete($timesheet)
+    {
+        return $this->model->find($timesheet)->delete();
+    }
 }
