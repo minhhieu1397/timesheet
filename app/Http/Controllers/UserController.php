@@ -11,9 +11,17 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Validation\ValidationName;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\MessageBag;
+use App\Services\UserService;
 
 class UserController extends Controller
 {
+    protected $userService;
+
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     public function login()
 	{
 		return view('user.signin');
@@ -43,12 +51,13 @@ class UserController extends Controller
 
     public function store(RegisterRequest $request)
   	{
-        $User = User::create([
-            'email' => $request->input('email'),    
-            'password' => \Hash::make($request->input('password'))          
-        ]);
-
-        return redirect()->route('users.login')->withSuccess( 'Register is successfuly' );
+        if ($this->userService->create($request)) {
+            return redirect()->route('users.login')->withSuccess( 'Register is successfuly' );
+        } else {
+            return back()->withInput()->withErrors([
+                'errorCreate' => 'Have an error while creating new timesheet'
+            ]);
+        }
     }
 
     public function logout() 
@@ -58,11 +67,10 @@ class UserController extends Controller
         return redirect()->route('users.login');
     }
 
-     public function index()
+    public function index()
     {
-        return view('user.view', [
-            'user' => User::all()
-        ]);
+        $user = $this->userService->index();
+        return view('user.view', ['user' => $user]);
     }
 
     public function show(User $user)
@@ -74,8 +82,12 @@ class UserController extends Controller
     
     public function destroy($user)
     {
-        User::destroy($user);
-
-        return redirect()->route('users.index');
+        if ($this->userService->delete($user)) {
+           return redirect()->route('users.index')->withSuccess( 'Delete is successfuly' );
+        } else {
+            return back()->withInput()->withErrors([
+                'errorDelete' => 'Have an error while delete'
+            ]);
+        }
     }
 }

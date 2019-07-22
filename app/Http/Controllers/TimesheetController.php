@@ -25,9 +25,9 @@ class TimesheetController extends Controller
 
     public function index()
     {
-    $timesheets = $this->timesheetService->index();
+        $timesheets = $this->timesheetService->index();
      
-    return view('timesheet.view', ['timesheets' => $timesheets]);
+        return view('timesheet.view', ['timesheets' => $timesheets]);
     }
 
     public function create()
@@ -71,8 +71,12 @@ class TimesheetController extends Controller
 
     public function destroy($timesheet)
     {
-        $this->timesheetService->delete($timesheet);
-
-        return redirect()->route('timesheets.index');
+        if ($this->timesheetService->delete($timesheet)) {
+           return redirect()->route('timesheets.index')->withSuccess( 'Delete is successfuly' );
+        } else {
+            return back()->withInput()->withErrors([
+                'errorDelete' => 'Have an error while delete'
+            ]);
+        }
     }
 }

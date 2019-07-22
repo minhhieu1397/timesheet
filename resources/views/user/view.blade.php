@@ -6,6 +6,21 @@
 		<div class="col-md-10 offset-md-1">
 			<h1 class="text-center">List users</h1>
 			<table class="table table-condensed" >
+				<div class="text-center">
+					@if (Session::has( 'success' ))
+						{{ Session::get( 'success' ) }}
+					@endif
+
+					@if ($errors->any())
+						<div class="alert alert-danger">
+				   			<ul>
+					            @foreach ($errors->all() as $error)
+					                <li>{{ $error }}</li>
+					            @endforeach
+					        </ul>
+					    </div>
+					@endif
+				</div>
 				<thead>
 					<tr class="table__title">
 						<th>ID</th>

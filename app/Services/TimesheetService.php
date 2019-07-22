@@ -8,6 +8,8 @@ use App\Repositories\TimesheetRepository;
 
 class TimesheetService
 {
+    protected $timesheetRepository;
+    
 	public function __construct(TimesheetRepository $timesheetRepository)
     {
         $this->timesheetRepository = $timesheetRepository;
