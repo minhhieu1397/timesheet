@@ -26,7 +26,7 @@
 					<tr class="table__content">
 						<td>{{$timesheet->id}}</td>
 						<td>{{$timesheet->name}}</td>
-						<td>{{$timesheet->submit_date}}</td>
+						<td>{{$timesheet->work_date}}</td>
 						<td>{{$timesheet->start_time}}</td>
 						<td>{{$timesheet->end_time}}</td>
 						<td>{{$timesheet->details}}</td>

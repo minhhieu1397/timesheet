@@ -43,14 +43,14 @@ class TimesheetService
 
     public function show($timesheet)
     {
-        return $this->timesheetRepository->find($timesheet->id);
+        return $this->timesheetRepository->find($timesheet);
     }
 
     public function update(UpdateRequest $request, $timesheet)
     {
         $attributes = $request->all();
       
-        return $this->timesheetRepository->update($timesheet->id, $attributes);
+        return $this->timesheetRepository->update($timesheet, $attributes);
     }
 
     public function delete($timesheet)

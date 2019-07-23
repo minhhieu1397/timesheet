@@ -6,7 +6,7 @@
 			<h1> Edit Timesheet</h1>
 
 			{!! Form::open(['method' => 'PUT', 'route' => ['timesheets.update', $timesheet->id]]) !!}
-				<div>
+
 					@if ($errors->any())
 						<div class="alert alert-danger">
 				   			<ul>
@@ -16,21 +16,20 @@
 					        </ul>
 						</div>
 					@endif
-				</div>
         
 	       		<div class="form-group">
-	            	{{ Form::label('details', 'Details', ['class' => 'control-label']) }}
-	            	{{ Form::textarea('details', null, ['class' => 'name', 'rows' => 3]) }}
+	            	{{ Form::label('details', 'Details:', ['class' => 'control-label']) }}
+	            	{{ Form::textarea('details', $timesheet->details, ['class' => 'form-control', 'rows' => 3]) }}
 	       		</div>
 
 	       		<div class="form-group">
-	            	{{ Form::label('issue', 'Issue', ['class' => 'control-label']) }}
-	            	{{ Form::text('issue', null, ['class' => 'form-control']) }}
+	            	{{ Form::label('issue', 'Issue:', ['class' => 'control-label']) }}
+	            	{{ Form::text('issue', $timesheet->issue, ['class' => 'form-control']) }}
 	       		</div>
 
 	       		<div class="form-group">
-	            	{{ Form::label('intention', 'Intention', ['class' => 'control-label']) }}
-	            	{{ Form::text('intention', null, ['class' => 'form-control']) }}
+	            	{{ Form::label('intention', 'Intention:', ['class' => 'control-label']) }}
+	            	{{ Form::text('intention', $timesheet->intention, ['class' => 'form-control']) }}
 	       		</div>
 
 	       		

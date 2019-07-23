@@ -12,6 +12,7 @@ use App\Http\Validation\ValidationName;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\MessageBag;
 use App\Services\UserService;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -33,7 +34,7 @@ class UserController extends Controller
         $password = $request->input('password');
 
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
-            if (Auth::user()->is_admin == true) {
+            if (Auth::user()->can('admin')) {
                 return redirect()->route('users.index');
             } else {
                 return redirect()->route('timesheets.index');
@@ -55,7 +56,7 @@ class UserController extends Controller
             return redirect()->route('users.login')->withSuccess( 'Register is successfuly' );
         } else {
             return back()->withInput()->withErrors([
-                'errorCreate' => 'Have an error while creating new timesheet'
+                'errorCreate' => 'Have an error while creating new User'
             ]);
         }
     }
@@ -75,7 +76,7 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        $timesheets = $user->timesheets; 
+        $timesheets = $this->userService->show($user);
 
         return view('user.show', ['timesheets' => $timesheets]);
     }

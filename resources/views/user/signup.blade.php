@@ -6,17 +6,16 @@
 			<h2 class="h1 text-center">Register</h2>
 
 			{!! Form::open(['method' => 'POST', 'route' => 'users.store']) !!}
-				<div>
-					@if ($errors->any())
-						<div class="alert alert-danger">
-				   			<ul>
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-					        </ul>
-					    </div>
-					@endif
-				</div>
+				
+				@if ($errors->any())
+					<div class="alert alert-danger">
+			   			<ul>
+							@foreach ($errors->all() as $error)
+								<li>{{ $error }}</li>
+							@endforeach
+				        </ul>
+				    </div>
+				@endif
 
 				<div class="form-group">
 	            	{{ Form::label('email', 'Email', ['class' => 'control-label']) }}

@@ -2,24 +2,23 @@
 @section('content')
 
 	<div class="row">
-		<div class="col-md-4 offset-md-4">
+		<div class="col-md-3 offset-md-5">
 				<h1>Add Timesheet</h1>
 			
 			{!! Form::open(['method' => 'POST', 'route' => 'timesheets.store']) !!}
-				<div>
-					@if ($errors->any())
-						<div class="alert alert-danger">
-				   			<ul>
-					            @foreach ($errors->all() as $error)
-					                <li>{{ $error }}</li>
-					            @endforeach
-					        </ul>
-					    </div>
-					@endif
-				</div>
+
+				@if ($errors->any())
+					<div class="alert alert-danger">
+			   			<ul>
+				            @foreach ($errors->all() as $error)
+				                <li>{{ $error }}</li>
+				            @endforeach
+				        </ul>
+				    </div>
+				@endif
 				
         		<div class="form-group">
-	            	{{ Form::label('name', 'Email', ['class' => 'control-label']) }}
+	            	{{ Form::label('name', 'Name', ['class' => 'control-label']) }}
 	            	{{ Form::text('name', null, ['class' => 'form-control']) }}
 	       		</div>
 
@@ -40,7 +39,7 @@
 
 	       		<div class="form-group">
 	            	{{ Form::label('details', 'Details', ['class' => 'control-label']) }}
-	            	{{ Form::textarea('details', null, ['class' => 'name', 'rows' => 3]) }}
+	            	{{ Form::textarea('details', null, ['class' => 'form-control', 'rows' => 3]) }}
 	       		</div>
 
 	       		<div class="form-group">

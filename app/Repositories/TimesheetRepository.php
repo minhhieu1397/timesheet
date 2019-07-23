@@ -20,17 +20,17 @@ class TimesheetRepository
 
     public function all()
     {
-    	return $this->model->all();
+    	return $this->model->all()->where('user_id', \Auth::user()->id);
     }
 
     public function find($timesheet)
     {
-        return $this->model->find($timesheet);
+        return $this->model->find($timesheet->id);
     }
 
     public function update($timesheet, array $attributes)
     {
-        return $this->model->find($timesheet)->update($attributes);
+        return $this->model->find($timesheet->id)->update($attributes);
     }
 
     public function delete($timesheet)

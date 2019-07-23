@@ -27,4 +27,10 @@ class UserRepository
     {
         return $this->model->find($user)->delete();
     }
+
+    public function show($user)
+    {
+        $timesheets = $user->timesheets;
+        return $timesheets;
+    }
 }

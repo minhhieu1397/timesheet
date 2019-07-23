@@ -36,4 +36,9 @@ class UserService
         return $this->userRepository->delete($user);
     }
 
+    public function show($user)
+    {
+    	return $this->userRepository->show($user);
+    }
+
 }

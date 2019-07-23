@@ -26,7 +26,7 @@
 	@include('partial/main_nav')
 
   <!-- Page Content -->		
-	<div class="container">
+	<div class="container-fluid">
 		@yield('content')		
 	</div>
 
