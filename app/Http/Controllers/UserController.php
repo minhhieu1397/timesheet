@@ -79,7 +79,6 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        
         $timesheets = $this->userService->show($user);
         $user = Auth::user();
         $this->authorize('view',$user);
