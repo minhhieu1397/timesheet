@@ -31,6 +31,7 @@ class UserRepository
     public function show($user)
     {
         $timesheets = $user->timesheets;
+        
         return $timesheets;
     }
 }

@@ -5,7 +5,15 @@
 	<div class="row">
 		<div class="col-md-10 offset-md-1">
 			<h3 class="h3 text-center"> View</h3>
-
+			@if ($errors->any())
+				<div class="alert alert-danger">
+		   			<ul>
+			            @foreach ($errors->all() as $error)
+			                <li>{{ $error }}</li>
+			            @endforeach
+			        </ul>
+			    </div>
+			@endif
 			<table class="table table-condensed">
 				<thead>
 					<tr class="table__title">
@@ -35,6 +43,13 @@
 						<td>{{$timesheet->late_flg}}</td>
 						<td> 
 							<a href="{{route('timesheets.edit', $timesheet['id'])}}" >Edit</a>
+							<form action="{{route('timesheets.destroy', $timesheet['id'])}}" method="POST">
+								{{ method_field('DELETE') }}
+								{{ csrf_field() }}
+								<div>
+									<button class="btn btn-danger" type="submig">Delete</button>
+								</div>
+							</form>
 						</td>
 					</tr>						
 				</tbody>

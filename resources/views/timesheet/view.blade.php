@@ -50,13 +50,6 @@
 							<td>{{$timesheet->late_flg}}</td>
 							<td> 
 								<a href="{{route('timesheets.show', $timesheet['id'])}}" >View</a>
-							<form action="{{route('timesheets.destroy', $timesheet['id'])}}" method="POST">
-								{{ method_field('DELETE') }}
-								{{ csrf_field() }}
-								<div>
-									<button class="btn btn-danger" type="submig">Delete</button>
-								</div>
-							</form>
 							</td>
 						</tr>
 					@endforeach

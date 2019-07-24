@@ -34,7 +34,7 @@ class UserController extends Controller
         $password = $request->input('password');
 
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
-            if (Auth::user()->can('admin')) {
+            if (Auth::user()->is_admin == true) {
                 return redirect()->route('users.index');
             } else {
                 return redirect()->route('timesheets.index');
@@ -70,13 +70,19 @@ class UserController extends Controller
 
     public function index()
     {
+        $user = Auth::user();
+        $this->authorize('view',$user);
+
         $user = $this->userService->index();
         return view('user.view', ['user' => $user]);
     }
 
     public function show(User $user)
     {
+        
         $timesheets = $this->userService->show($user);
+        $user = Auth::user();
+        $this->authorize('view',$user);
 
         return view('user.show', ['timesheets' => $timesheets]);
     }
@@ -84,10 +90,10 @@ class UserController extends Controller
     public function destroy($user)
     {
         if ($this->userService->delete($user)) {
-           return redirect()->route('users.index')->withSuccess( 'Delete is successfuly' );
+            return redirect()->route('users.index')->withSuccess( 'Delete is successfuly' );
         } else {
-            return back()->withInput()->withErrors([
-                'errorDelete' => 'Have an error while delete'
+            return back()->withErrors([
+                'errorDelete' => 'Have an error while deleting user'
             ]);
         }
     }

@@ -37,9 +37,10 @@ class TimesheetController extends Controller
 
     public function show(Timesheet $timesheet)
     {
-       $timesheet = $this->timesheetService->show($timesheet);
+        $this->authorize('show', $timesheet);
+        $timesheet = $this->timesheetService->show($timesheet);
 
-       return view('timesheet.show', ['timesheet' => $timesheet]);
+        return view('timesheet.show', ['timesheet' => $timesheet]);
     }
 
     public function store(CreateRequest $request)
@@ -60,8 +61,9 @@ class TimesheetController extends Controller
 
     public function update(Timesheet $timesheet, UpdateRequest $request)
     {
+        
         if ($this->timesheetService->update($request, $timesheet)) {
-        return redirect()->route('timesheets.index');
+            return redirect()->route('timesheets.index');
         } else {
             return back()->withInput()->withErrors([
                 'errorUpdate' => 'Have an error while updating timesheet'
@@ -71,11 +73,12 @@ class TimesheetController extends Controller
 
     public function destroy($timesheet)
     {
+
         if ($this->timesheetService->delete($timesheet)) {
-           return redirect()->route('timesheets.index')->withSuccess( 'Delete is successfuly' );
+            return redirect()->route('timesheets.index')->withSuccess( 'Delete is successfuly' );
         } else {
-            return back()->withInput()->withErrors([
-                'errorDelete' => 'Have an error while delete'
+            return back()->withErrors([
+                'errorDelete' => 'Have an error while deleting timesheet'
             ]);
         }
     }

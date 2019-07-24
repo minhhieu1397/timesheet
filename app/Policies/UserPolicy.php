@@ -5,19 +5,18 @@ namespace App\Policies;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class PostPolicy
+class UserPolicy
 {
     use HandlesAuthorization;
 
-    public function admin(User $user)
+    public function view(User $user)
     {
-        if ($user->is_admin == 1) {
+        if ($user->is_admin == true) {
             return true;
         } else {
             return false;
         }
     }
-
     /**
      * Create a new policy instance.
      *

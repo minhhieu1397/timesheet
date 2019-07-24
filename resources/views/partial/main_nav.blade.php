@@ -8,6 +8,11 @@
 				<li class="nav-item">
 					<a class="nav-link text-success h5" href="{{route('timesheets.create')}}">Create</a>
 				</li>
+				@can ('isAdmin')
+					<li class="nav-item">
+						<a class="nav-link text-success h5" href="{{route('users.index')}}">Admin</a>
+					</li>
+				@endcan
 			</ul>
 		</div>
 

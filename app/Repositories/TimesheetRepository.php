@@ -20,7 +20,11 @@ class TimesheetRepository
 
     public function all()
     {
-    	return $this->model->all()->where('user_id', \Auth::user()->id);
+        if (\Auth::user()->is_admin == true) {
+            return $this->model->all();
+        } else {
+    	   return $this->model->all()->where('user_id', \Auth::user()->id);
+        }
     }
 
     public function find($timesheet)

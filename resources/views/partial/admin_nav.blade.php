@@ -2,8 +2,11 @@
 	<div class="container">
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li class="nav-item">
+				<li class="nav-iteme">
 					<a class="nav-link text-success h5" href="{{route('users.index')}}">View User</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link text-success h5" href="{{route('timesheets.index')}}">View Timesheet</a>
 				</li>
 			</ul>
 		</div>
