@@ -19,7 +19,8 @@ class UserService
     public function create(RegisterRequest $request)
 	{
         $user = $this->userRepository->create([
-			'email' => $request->input('email'),    
+            'name' => ucwords($request->input('name')),
+			'email' => $request->input('email'),
             'password' => \Hash::make($request->input('password'))
         ]);
 
@@ -40,5 +41,9 @@ class UserService
     {
     	return $this->userRepository->show($user);
     }
-
+    public function search(Request $request)
+    {
+        $search_name = ucwords($request->input('search'));
+        return $this->userRepository->search($search_name);
+    }
 }

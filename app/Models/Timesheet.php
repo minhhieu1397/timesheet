@@ -10,7 +10,7 @@ class Timesheet extends Model
     use Notifiable;
     protected $table = 'timesheet';
 
-     protected $fillable = [
+    protected $fillable = [
         'name', 'details','work_date','issue','intention','late_flg','start_time','end_time','user_id',
     ];
 

@@ -49,12 +49,13 @@
 							<td>{{$timesheet->intention}}</td>
 							<td>{{$timesheet->late_flg}}</td>
 							<td> 
-								<a href="{{route('timesheets.show', $timesheet['id'])}}" >View</a>
+								<a href="{{route('timesheets.show', $timesheet['id'])}}" title="View TimeSheet!!!" >View</a>
 							</td>
 						</tr>
 					@endforeach
 				</tbody>
 			</table>
+			{{ $timesheets->links('') }}
 		</div>
 	</div>
 

@@ -22,7 +22,7 @@ class TimesheetService
         $lateFlg = $now->diffInSeconds($workDate, false) < 0;
 
         $timesheet = $this->timesheetRepository->create([
-        	'name' => $request->input('name'),
+        	'name' => \Auth::user()->name,
             'work_date' => $request->input('work_date'),
             'start_time' => $request->input('start_time'),
             'end_time' => $request->input('end_time'),

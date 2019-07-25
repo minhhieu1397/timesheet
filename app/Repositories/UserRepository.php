@@ -6,7 +6,7 @@ use App\Models\User;
 
 class UserRepository
 {
-	protected $model;
+    protected $model;
 
     public function __construct(User $model)
     {
@@ -20,7 +20,7 @@ class UserRepository
 
     public function all()
     {
-    	return $this->model->all();
+    	return $this->model->paginate(7);
     }
 
     public function delete($user)
@@ -33,5 +33,10 @@ class UserRepository
         $timesheets = $user->timesheets;
         
         return $timesheets;
+    }
+
+    public function search($search_name)
+    {
+        return $this->model->where('name', $search_name)->paginate(4);
     }
 }

@@ -73,8 +73,8 @@ class UserController extends Controller
         $user = Auth::user();
         $this->authorize('view',$user);
 
-        $user = $this->userService->index();
-        return view('user.view', ['user' => $user]);
+        $users = $this->userService->index();
+        return view('user.view', ['users' => $users]);
     }
 
     public function show(User $user)
@@ -93,6 +93,19 @@ class UserController extends Controller
         } else {
             return back()->withErrors([
                 'errorDelete' => 'Have an error while deleting user'
+            ]);
+        }
+    }
+
+    public function search(Request $request)
+    {
+        $users = $this->userService->search($request);
+
+        if (count($users) > 0) {
+            return view('user.view', ['users' => $users]);
+        } else {
+            return redirect()->route('users.index')->withErrors([
+                'errorSearch' => 'No data exists'
             ]);
         }
     }

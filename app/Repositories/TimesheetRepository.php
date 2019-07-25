@@ -21,9 +21,9 @@ class TimesheetRepository
     public function all()
     {
         if (\Auth::user()->is_admin == true) {
-            return $this->model->all();
+            return $this->model->orderBy('work_date', 'desc')->paginate(5);
         } else {
-    	   return $this->model->all()->where('user_id', \Auth::user()->id);
+    	   return $this->model->orderBy('work_date', 'desc')->where('user_id', \Auth::user()->id)->paginate(4);
         }
     }
 

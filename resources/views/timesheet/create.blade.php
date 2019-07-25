@@ -17,14 +17,9 @@
 				    </div>
 				@endif
 				
-        		<div class="form-group">
-	            	{{ Form::label('name', 'Name', ['class' => 'control-label']) }}
-	            	{{ Form::text('name', null, ['class' => 'form-control']) }}
-	       		</div>
-
 	       		<div class="form-group">
-	            	{{ Form::label('work_date', 'Work Date (YYYY-MM-DD)', ['class' => 'control-label']) }}
-	            	{{ Form::text('work_date', null, ['class' => 'form-control']) }}
+	            	{{ Form::label('work_date', 'Work Date (MM-DD-YYYY)', ['class' => 'control-label']) }}
+	            	{{ Form::date('work_date', null, ['class' => 'form-control']) }}
 	       		</div>
 
 	       		<div class="form-group">
