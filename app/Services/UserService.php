@@ -57,11 +57,11 @@ class UserService
         if (!(Hash::check($request->get('current_password'), \Auth::user()->password)))  {
             return false;
         }
-        
 
         if (strcmp($request->input('current_password'), $new_password ) == 0) {
             return false;
         }
+        
         return $this->userRepository->changePassword($new_password);
     }
 }
