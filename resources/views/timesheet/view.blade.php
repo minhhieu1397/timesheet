@@ -4,7 +4,7 @@
 
 	<div class="row">
 		<div class="col-md-10 offset-md-1">
-			<h1 class="h1 text-center">View</h1>
+			<h1 class="h1 text-center text-primary">View</h1>
 			<div class="text-center">
 				@if (Session::has( 'success' ))
 					{{ Session::get( 'success' ) }}
@@ -19,6 +19,13 @@
 				        </ul>
 				    </div>
 				@endif
+			</div>
+			
+			<div class="form-group">
+				{!! Form::open(['method' => 'GET', 'route' => 'timesheet.search']) !!}
+						{{ Form::date('search_date', null) }}
+						{!! Form::submit('Search Date', ['class' => 'btn-primary']) !!}
+				{!! Form::close() !!}
 			</div>
 
 			<table class="table table-condensed">

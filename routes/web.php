@@ -12,6 +12,7 @@
 */
 
 Route::group(['middleware' => 'auth'], function () {
+	Route::get('/timesheets/search', 'TimesheetController@search')->name('timesheet.search');
 	Route::get('/timesheets', 'TimesheetController@index')->name('timesheets.index');
 	Route::get('/timesheets/create', 'TimesheetController@create')->name('timesheets.create');
 	Route::get('/timesheets/{timesheet}', 'TimesheetController@show')->name('timesheets.show');
@@ -28,6 +29,8 @@ Route::post('/users/register', 'UserController@store')->name('users.store');
 Route::get('logout', 'UserController@logout')->name('users.logout');
 
 Route::group(['middleware' => 'auth'], function () {
+	Route::get('/users/account', 'UserController@account')->name('users.account');
+	Route::put('/users/account', 'UserController@update')->name('users.update');
 	Route::get('/users', 'UserController@index')->name('users.index');
 	Route::get('/users/search', 'UserController@search')->name('users.search');
 	Route::get('/users/{user}', 'UserController@show')->name('users.show');

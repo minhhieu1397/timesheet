@@ -53,6 +53,13 @@ class TimesheetService
         return $this->timesheetRepository->update($timesheet, $attributes);
     }
 
+    public function search($request)
+    {
+        $search_date = $request->input('search_date');
+
+        return $this->timesheetRepository->search($search_date);
+    }
+
     public function delete($timesheet)
     {
         return $this->timesheetRepository->delete($timesheet);

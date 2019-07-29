@@ -3,7 +3,7 @@
 
 	<div class="row">
 		<div class="col-md-3 offset-md-5">
-				<h1>Add Timesheet</h1>
+				<h1 class="h1 text-center text-primary">Add Timesheet</h1>
 			
 			{!! Form::open(['method' => 'POST', 'route' => 'timesheets.store']) !!}
 

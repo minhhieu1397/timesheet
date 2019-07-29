@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\RegisterRequest;
+use App\Http\Requests\User\ChangePassRequest;
 use App\Models\User;
 use App\Models\Timesheet;
 use Illuminate\Support\Facades\Validator;
@@ -106,6 +107,22 @@ class UserController extends Controller
         } else {
             return redirect()->route('users.index')->withErrors([
                 'errorSearch' => 'No data exists'
+            ]);
+        }
+    }
+
+    public function account()
+    {
+        return view('user.account');
+    }
+
+    public function update(Request $request)
+    {
+        if ($this->userService->update($request)) {
+            return redirect()->route('users.logout');
+        } else {
+            return redirect()->back()->withErrors([
+                'errorChangePass' => 'Have'
             ]);
         }
     }

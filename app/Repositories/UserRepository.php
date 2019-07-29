@@ -39,4 +39,13 @@ class UserRepository
     {
         return $this->model->where('name', $search_name)->paginate(4);
     }
+
+    public function changePassword($new_password)
+    {
+        $user = \Auth::user();
+        $user->password = bcrypt($new_password);
+        $user->save();
+
+        return true;
+    }
 }

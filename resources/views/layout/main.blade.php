@@ -18,7 +18,10 @@
 </head>
 
 <body>
-
+	@php 
+		$name = Auth::user()->name;
+		$email = Auth::user()->email;
+	@endphp
 	<div class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
 		<h1 class="Timesheet">Timesheet</h1>
 	</div>
@@ -27,6 +30,20 @@
 
   <!-- Page Content -->		
 	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-4 offset-md-1">
+				<div class="font-weight-normal">
+					<div>
+						Tên: {{$name}}
+					</div>
+					
+					<div>
+						Email: {{$email}}
+					</div>
+				</div>
+			</div>
+		</div>
+
 		@yield('content')		
 	</div>
 

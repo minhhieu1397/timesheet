@@ -8,6 +8,10 @@
 				<li class="nav-item">
 					<a class="nav-link text-success h5" href="{{route('timesheets.create')}}">Create</a>
 				</li>
+				<li class="nav-item">
+					<a class="nav-link text-success h5" href="{{route('users.account')}}">account management</a>
+				</li>
+
 				@can ('isAdmin')
 					<li class="nav-item">
 						<a class="nav-link text-success h5" href="{{route('users.index')}}">Admin</a>
@@ -17,10 +21,11 @@
 		</div>
 
 		<div class="collapse navbar-collapse" id="navbarResponsive">
-			<ul class="navbar-nav ml-auto">
+			<ul class="navbar-nav ml-auto list-inline">
 				<li class="nav-item">
-					<a class="nav-link list_title" href="{{route('users.logout')}}">Logout</a>
+					<a class="list_title" href="{{route('users.logout')}}">Logout &nbsp;</a>
 				</li>
+
 			</ul>
 		</div>
 	</div>

@@ -37,6 +37,11 @@ class TimesheetRepository
         return $this->model->find($timesheet->id)->update($attributes);
     }
 
+    public function search($search_date)
+    {
+        return $this->model->where('work_date', $search_date)->paginate(4);
+    }
+
     public function delete($timesheet)
     {
         return $this->model->find($timesheet)->delete();

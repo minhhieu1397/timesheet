@@ -71,6 +71,13 @@ class TimesheetController extends Controller
         }
     }
 
+    public function search(Request $request)
+    {
+        $timesheets = $this->timesheetService->search($request);
+
+        return view('timesheet.view', ['timesheets' => $timesheets]);
+    }
+
     public function destroy($timesheet)
     {
 
