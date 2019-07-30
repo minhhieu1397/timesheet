@@ -34,6 +34,9 @@
 				<div>
 	       			{!! Form::submit( 'Login', ['class' => 'btn btn-primary']) !!}
 				</div>
+				<div>
+					<a href="{{route('Users.Reset')}}">Forget Password</a>
+				</div>
 			{!! Form::close() !!}
 		</div>
 	</div>		

@@ -23,8 +23,8 @@
             	{{ Form::password('new_password', ['class' => 'form-control']) }}
 	        </div>
 	        <div class="form-group">
-            	{{ Form::label('confirm_password', 'Confirm Password:', ['class' => 'control-label', ]) }}
-            	{{ Form::password('confirm_password', ['class' => 'form-control']) }}
+            	{{ Form::label('new_password_confirmation', 'Confirm Password:', ['class' => 'control-label', ]) }}
+            	{{ Form::password('new_password_confirmation', ['class' => 'form-control']) }}
         	</div>
 	        <div>
        			{!! Form::submit( 'Update', ['class' => 'btn btn-primary']) !!}

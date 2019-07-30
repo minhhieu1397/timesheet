@@ -3,6 +3,7 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\CheckCurrentPassword;
 
 class ChangePassRequest extends FormRequest
 {
@@ -24,9 +25,8 @@ class ChangePassRequest extends FormRequest
     public function rules()
     {
         return [
-            'current_password' => 'min:8',
-            'new_password' => 'min:8|required_with:confirm_password|same:confirm_password',
-            'confirm_password' => 'min:8'
+            'current_password' => ['min:8', new CheckCurrentPassword()],
+            'new_password' => 'min:8|confirmed|different:current_password',
         ];
     }
 }

@@ -116,7 +116,7 @@ class UserController extends Controller
         return view('user.account');
     }
 
-    public function update(Request $request)
+    public function update(ChangePassRequest $request)
     {
         if ($this->userService->update($request)) {
             return redirect()->route('users.logout');
