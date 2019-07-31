@@ -5,7 +5,7 @@
 		<div class="col-md-4 offset-md-3">
 			<h2 class="h1 text-center">Login</h2>
 
-			{!! Form::open(['method' => 'POST', 'route' => 'users.login.post']) !!}
+			{!! Form::open(['method' => 'POST', 'route' => 'Users.post_forgot.password']) !!}
 				
 				@if ($errors->any())
 					<div class="alert alert-danger">
@@ -26,16 +26,8 @@
 	            	{{ Form::text('email', null, ['class' => 'form-control']) }}
 	       		</div>
 
-	       		<div class="form-group">
-	            	{{ Form::label('password', 'Password', ['class' => 'control-label']) }}
-
-	       			{{ Form::password('password', ['class' => 'form-control']) }}
-	       		</div class="form-group">
 				<div>
 	       			{!! Form::submit( 'Login', ['class' => 'btn btn-primary']) !!}
-				</div>
-				<div class="form-group">
-					<a href="{{route('Users.forgot.password')}}">Forget Password</a>
 				</div>
 			{!! Form::close() !!}
 		</div>

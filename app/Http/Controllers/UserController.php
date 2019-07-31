@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\MessageBag;
 use App\Services\UserService;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Contracts\Auth\CanResetPassword;
 
 class UserController extends Controller
 {
@@ -126,4 +127,6 @@ class UserController extends Controller
             ]);
         }
     }
+
+   
 }

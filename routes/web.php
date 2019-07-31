@@ -27,7 +27,12 @@ Route::post('/users/login', 'UserController@postlogin')->name('users.login.post'
 Route::get('/users/register', 'UserController@create')->name('users.create');	
 Route::post('/users/register', 'UserController@store')->name('users.store');
 Route::get('logout', 'UserController@logout')->name('users.logout');
-Route::get('/users/Resetpassword', 'UserController@Resetpassword')->name('Users.Reset');
+
+Route::get('/forgot_password', 'ForgotPasswordController@forgot')->name('Users.forgot.password');
+Route::post('/forgot_password', 'ForgotPasswordController@postForgot')->name('Users.post_forgot.password');
+Route::get('/reset-password/{token}', 'ForgotPasswordController@resetPassword')->name('Users.forgot.reset');
+Route::put('/reset-password/{token}', 'ForgotPasswordController@putResetPassword')->name('Users.putforgot.reset');
+
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/users/account', 'UserController@account')->name('users.account');
